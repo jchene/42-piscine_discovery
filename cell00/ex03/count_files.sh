@@ -1,0 +1,1 @@
+echo $(find . -maxdepth 1 -type f,d | wc -l) " - 1" | bc
