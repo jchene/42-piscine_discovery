@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<style>
+body{
+	margin:0;
+	padding:0;
+}
+.baloon{
+	width: 200px;
+	height: 200px;
+	background: red;
+	margin: 0 auto 0 auto;
+	border-radius: 100%;
+}
+.baloon:hover{
+	
+}
+</style>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Baloon</title>
+	</head>
+	<body>
+		<div class="baloon"></div>
+	</body>
+<script>
+var baloon = document.getElementsByClassName("baloon")[0];
+var body = document.getElementsByTagName("body")[0];
+
+baloon.addEventListener ("click", function() {
+  document.getElementsByClassName("baloon").style.transform = "scale(0.5)"});
+</script>
+</html>
