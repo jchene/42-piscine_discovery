@@ -1,0 +1,46 @@
+body{
+	margin:0;
+}
+
+h1{
+	margin:0;
+}
+
+.parallax {
+	height:100vh;
+	background-attachment: fixed;
+	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+}
+
+.header{
+ 	position: relative;
+	top: 50%;
+	text-align: center;
+	font-size: 50px;
+}
+
+.h1{
+	color: red;
+}
+
+.h2{
+	color: white;
+}
+
+.h3{
+	color: cyan;
+}
+
+.parallax1 {
+	background-image: url("kebab.jpg");
+}
+
+.box {
+	background: black;
+}
+
+.parallax2 {
+	background-image: url("brochette.jpg");
+}
