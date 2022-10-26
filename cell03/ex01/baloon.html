@@ -3,31 +3,55 @@
 body{
 	margin:0;
 	padding:0;
+	text-align: center;
 }
 .baloon{
+	display: flex;
 	width: 200px;
 	height: 200px;
-	background: red;
-	margin: 0 auto 0 auto;
 	border-radius: 100%;
-}
-.baloon:hover{
-	
+	background-color: red;
+	transform: none;
+	cursor: pointer;
+	margin: 50px auto 0 auto;
 }
 </style>
 <html>
 	<head>
 		<meta charset="utf-8" />
 		<title>Baloon</title>
+		<h1>Baloon</h1>
 	</head>
 	<body>
-		<div class="baloon"></div>
+		<div class="baloon" id="ball"></div>
 	</body>
 <script>
-var baloon = document.getElementsByClassName("baloon")[0];
-var body = document.getElementsByTagName("body")[0];
-
-baloon.addEventListener ("click", function() {
-  document.getElementsByClassName("baloon").style.transform = "scale(0.5)"});
+window.onload = function() {
+	var baloon = document.getElementsByClassName("baloon")[0];
+	var colors = ['red', 'green', 'blue', 'black'];
+	var index = 0;
+	if (baloon){
+		baloon.addEventListener('click', function onClick(event){
+			var	bsizepx = window.getComputedStyle(baloon).getPropertyValue("width");
+				bsize = parseInt(parseInt(bsizepx.split("p")[0]) + 10);
+			if (bsize > 420)
+				bsize = 200;
+			index = parseInt(parseInt(index + 1) % 4);
+			event.target.style.width = bsize + "px";
+			event.target.style.height = bsize + "px";
+			event.target.style.backgroundColor = colors[index];
+		});
+		baloon.addEventListener('mouseleave', function onExit(event){
+			var	bsizepx = window.getComputedStyle(baloon).getPropertyValue("width");
+				bsize = parseInt(parseInt(bsizepx.split("p")[0]) - 5);
+			if (bsize < 200)
+				bsize = 200;
+			index = (index == 0 ? 3 : parseInt(index - 1));
+			event.target.style.width = bsize + "px";
+			event.target.style.height = bsize + "px";
+			event.target.style.backgroundColor = colors[index];
+		});
+	}
+};
 </script>
 </html>

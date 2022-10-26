@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<style>
+body{
+	margin:0;
+	padding:0;
+	text-align: center;
+}
+</style>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Calculator</title>
+		<h1>Calculator</h1>
+	</head>
+	<body>
+		<input type="text" class="field1">
+		<select name="operator" class="operator">
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="/">/</option>
+			<option value="*">*</option>
+			<option value="%">%</option>
+		</select>
+		<input type="text" class="field2">
+		<input type="submit" value="Try me!" class="submit">
+	</body>
+<script>
+window.onload = function() {
+	var field1 = document.getElementsByClassName("field1")[0],
+		field2 = document.getElementsByClassName("field2")[0],
+		operator = document.getElementsByClassName("operator")[0],
+		subBtn = document.getElementsByClassName("submit")[0];
+		calc = {
+    		'+': function (x, y) { return x + y },
+    		'-': function (x, y) { return x - y },
+    		'*': function (x, y) { return x * y },
+    		'/': function (x, y) { return x / y },
+    		'%': function (x, y) { return x % y }
+		}
+	setInterval(function(){ 
+		window.alert("Please, use me...");
+	}, 30000);
+	subBtn.addEventListener('click', function onClick(event){
+		var field1v = field1.value,
+			field2v = field2.value,
+			operatorv = operator.value;
+		if (!(/^[0-9]+$/.test(field1v)) || !(/^[0-9]+$/.test(field2v))){
+			window.alert("Error :(");
+			return}
+		if (field2v == "0" && (operatorv == "/" || operatorv == "%")){
+			window.alert("It’s over 9000!");
+			console.log("It’s over 9000!");
+		}
+		var result = calc[operatorv](parseInt(field1v), parseInt(field2v));
+		console.log(result);
+		window.alert(result);
+	});
+};
+</script>
+</html>

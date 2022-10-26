@@ -1,2 +1,10 @@
-table{ border: 1px solid #333; width: 100%; height: 200px;}
-td { border: 1px solid #333; width:50%;}
+html{ height:100% }
+body { 
+	height: inherit; 
+	margin:0;
+	padding:0;
+}
+h1 { text-align: center }
+table{ border: 1px solid #333; width: 100%; height: inherit;}
+tr { height: inherit }	
+td { border: 1px solid #333; width: 50%; height: inherit;}
