@@ -24,13 +24,10 @@ body{
 		<input type="text" class="field2">
 		<input type="submit" value="Try me!" class="submit">
 	</body>
+<script src="../jquery-3.6.1.js"></script>
 <script>
-window.onload = function() {
-	var field1 = document.getElementsByClassName("field1")[0],
-		field2 = document.getElementsByClassName("field2")[0],
-		operator = document.getElementsByClassName("operator")[0],
-		subBtn = document.getElementsByClassName("submit")[0];
-		calc = {
+$(document).ready(function(){
+	var calc = {
     		'+': function (x, y) { return x + y },
     		'-': function (x, y) { return x - y },
     		'*': function (x, y) { return x * y },
@@ -40,23 +37,42 @@ window.onload = function() {
 	setInterval(function(){ 
 		window.alert("Please, use me...");
 	}, 30000);
-	subBtn.addEventListener('click', function onClick(event){
-		var field1v = field1.value,
-			field2v = field2.value,
-			operatorv = operator.value;
-		if (!(/^[0-9]+$/.test(field1v)) || !(/^[0-9]+$/.test(field2v))){
+	$(".submit").click(function (){
+		console.log($(".field1").val());
+		console.log($(".field2").val());
+		if (!(/^[0-9]+$/.test($(".field1").val())) || !(/^[0-9]+$/.test($(".field2").val()))){
 			window.alert("Error :(");
 			return;
 		}
-		if (field2v == "0" && (operatorv == "/" || operatorv == "%")){
+		if ($(".field2").val() == "0" && ($(".operator").val() == "/" || $(".operator").val() == "%")){
 			window.alert("It’s over 9000!");
 			console.log("It’s over 9000!");
 			return;
 		}
-		var result = calc[operatorv](parseInt(field1v), parseInt(field2v));
+		var result = calc[$(".operator").val()](parseInt($(".field1").val()), parseInt($(".field2").val()));
 		console.log(result);
 		window.alert(result);
-	});
-};
+	})
+});
 </script>
 </html>
+
+
+
+
+window.onload = function() {
+	document.getElementsByClassName("addBtn")[0].addEventListener("click", function(){
+		var msg = window.prompt("Enter task", "");
+		if (!msg)
+			return;
+		var newTask = document.createElement("div");
+		newTask.classList.add("task");
+		newTask.innerText = msg;
+		newTask.append(document.createElement("hr"));
+		document.getElementsByClassName("list")[0].prepend(newTask);
+		newTask.addEventListener("click", function(){
+			if (window.confirm("Do you want to discard this task?"))
+				newTask.remove();
+		});
+	});
+};

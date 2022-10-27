@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<style>
+body{
+	margin:0;
+	padding:0;
+	text-align: center;
+}
+.baloon{
+	display: flex;
+	width: 200px;
+	height: 200px;
+	border-radius: 100%;
+	background-color: red;
+	cursor: pointer;
+	margin: 50px auto 0 auto;
+}
+</style>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Baloon</title>
+		<h1>Baloon</h1>
+	</head>
+	<body>
+		<div class="baloon" id="ball"></div>
+	</body>
+<script src="../jquery-3.6.1.js"></script>
+<script>
+$(document).ready(function(){
+	var colors = ['red', 'green', 'blue', 'black'],
+		i = 1;
+	$(".baloon").click(function() {
+		var size = parseInt($(".baloon").css("width").split("p")[0]);
+		if (parseInt(size + 10) > 420)
+			$(".baloon").css({"height": "200px", "width": "200px", "background-color": colors[i]});
+		else
+			$(".baloon").css({"height": parseInt(size + 10) + "px", "width": parseInt(size + 10) + "px", "background-color": colors[i]});
+		i = ++i % 4;
+	});
+	$(".baloon").mouseleave(function() {
+		var size = parseInt($(".baloon").css("width").split("p")[0]);
+		if (parseInt(size - 5) < 200)
+			$(".baloon").css({"height": "200px", "width": "200px", "background-color": colors[i]});
+		else
+			$(".baloon").css({"height": parseInt(size - 5) + "px", "width": parseInt(size - 5) + "px", "background-color": colors[i]});
+		i = (i == 0 ? 3 : parseInt(i - 1));
+	});
+});
+</script>
+</html>
